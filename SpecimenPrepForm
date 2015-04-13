@@ -1,0 +1,183 @@
+<!--There are 2 part to the code in this form. The first section, 'Views' are listed at the top of the file and are structured like this
+<view name="(Name of Form or Subform)"
+	class= something specific to the datamodel
+	desc<![more information here about the form]]</desc>
+			altview name= "(different modes of the form or subform)"
+			
+Copy lines 11 through 32 to this section of the paleo.views.xml file.			
+			-->
+			
+			
+<!--TreatmentEvent view moved from common.views.xml to paleo.views.xml on (Enter Date Here) by (name). 
+XML written by Angella Thompson, Non-vertebrate Paleontology lab at University of Texas at Austin. Contact:ainzinga@austin.utexas.edu -->	
+			        <view name="TreatmentEvent"
+            class="edu.ku.brc.specify.datamodel.TreatmentEvent"
+            isinternal="false"
+            >
+            <desc><![CDATA[Treatment Event form.]]></desc>
+            <altviews>
+                <altview name="TreatmentEvent View" viewdef="TreatmentEvent" mode="view" default="true"/>
+                <altview name="TreatmentEvent Edit" viewdef="TreatmentEvent" mode="edit"/>
+            </altviews>
+        </view>
+        
+        <view name="TreatmentEventSub"
+            class="edu.ku.brc.specify.datamodel.TreatmentEvent"
+            >
+            <desc><![CDATA[Treatment Event form.]]></desc>
+            <altviews>
+                <altview name="TreatmentEventSub View" viewdef="TreatmentEventSub" mode="view" default="true"/>
+                <altview name="TreatmentEventSub Edit" viewdef="TreatmentEventSub" mode="edit"/>
+            </altviews>
+        </view> 
+		
+		
+<!-- The second part of the file are the view definitions. This describes the form layout. Column defs are custom, designed on a Windows machine.
+Mac software may need adjusting to display correctly. For systems running Linux, well, you probably don't need help.
+
+Copy lines 41 though 174 into the view defs part of the file.  -->		
+	
+
+<!--TreatmentEvent defs moved from common.views.xml to paleo.views.xml on (Enter Date Here) by (name). 
+XML written by Angella Thompson, Non-vertebrate Paleontology lab at University of Texas at Austin. Contact:ainzinga@austin.utexas.edu -->	
+		<viewdef 
+            type="form" 
+            name="TreatmentEvent" 
+            class="edu.ku.brc.specify.datamodel.TreatmentEvent" 
+            gettable="edu.ku.brc.af.ui.forms.DataGetterForObj" 
+            settable="edu.ku.brc.af.ui.forms.DataSetterForObj">
+            <desc><![CDATA[Form For Treatment Event]]></desc>
+            
+            <columnDef>100px,2px,138px,5px,115px,2px,143px,5px,110px,2px,205px,0px,15px,p:g</columnDef>
+            <columnDef os="lnx">115px,2px,155px,5px,135px,2px,155px,5px,136px,2px,205px,0px,15px,p:g</columnDef>
+            <columnDef os="mac">130px,2px,170px,5px,155px,2px,170px,5px,150px,2px,239px,0px,15px,p:g</columnDef>
+            <columnDef os="exp">p,2px,p:g(2),5px:g,p,2px,p:g(2),5px:g,p,2px,p:g,0px,p,p:g</columnDef>
+            <rowDef auto="true" sep="2px" cell="p"/>
+            <rows>
+                <row>
+                    <cell type="label" labelfor="1"/>
+                    <cell type="field" id="1" name="collectionObject" uitype="querycbx" initialize="name=CollectionObject;editbtn=false;newbtn=false"/>				
+                    <cell type="label" labelfor="7"/>
+                    <cell type="field" id="7" name="dateTreatmentStarted" uitype="formattedtext" uifieldformatter="Date"/> 
+                    <cell type="label" labelfor="6"/>
+                    <cell type="field" id="6" name="dateTreatmentEnded" uitype="formattedtext" uifieldformatter="Date"/>
+                </row>
+				<row>	
+					<cell type="label" labelfor="3"/><!-- renamed Consolidant, assigned a pick list-->
+                    <cell type="field" id="3" name="treatmentNumber" uitype="combobox"/>
+                    <cell type="label" labelfor="fn"/><!-- renamed Field Jacket ID -->
+                    <cell type="field" id="fn" name="fieldNumber" uitype="text"/>					
+                </row>
+                <row>
+                    <cell type="label" labelfor="5"/> <!-- renamed PrepTools, assigned a pick list -->
+                    <cell type="field" id="5" name="type" uitype="combobox"/>
+                    <cell type="label" labelfor="4"/><!-- renamed Tool details-->
+                    <cell type="field" id="4" name="location" uitype="text"/>					
+                </row>				    
+                <row>
+                    <cell type="label" labelfor="2"/>
+                    <cell type="field" id="2" name="remarks" uitype="textareabrief" rows="2" colspan="10"/>
+                </row> 
+                <row>
+                    <cell type="label" labelfor="9"/>
+                    <cell type="field" id="9" name="createdByAgent" uitype="label" readonly="true"  uifieldformatter="Agent"/>
+                    <cell type="label" labelfor="10"/>
+                    <cell type="field" id="10" name="modifiedByAgent" uitype="label" readonly="true"  uifieldformatter="Agent"/>
+                </row>
+                <row>
+                    <cell type="label" labelfor="11"/>
+                    <cell type="field" id="11" name="timestampModified" uitype="label" readonly="true"/>
+                    <cell type="label" labelfor="12"/>
+                    <cell type="field" id="12" name="timestampCreated" uitype="label" readonly="true"/>
+                </row>				
+                <!--<row>
+                    <cell type="label" labelfor="db"/>
+                    <cell type="field" id="db" name="dateBoxed" uitype="formattedtext" uifieldformatter="Date"/> 
+                    <cell type="label" labelfor="dc"/>
+                    <cell type="field" id="dc" name="dateCleaned" uitype="formattedtext" uifieldformatter="Date"/> 
+                    <cell type="label" labelfor="dr"/>
+                    <cell type="field" id="dr" name="dateReceived" uitype="formattedtext" uifieldformatter="Date"/> 
+                </row>
+				<row>
+                    <cell type="label" labelfor="5"/>
+                    <cell type="field" id="5" name="dateToIsolation" uitype="formattedtext" uifieldformatter="Date"/> 
+                    <cell type="label" labelfor="3"/>
+                    <cell type="field" id="3" name="dateCompleted" uitype="formattedtext" uifieldformatter="Date"/> 
+                </row> 
+                <row> 
+                    <cell type="label" labelfor="2"/>
+                    <cell type="field" id="2" name="accession" uitype="querycbx" initialize="name=AccessionCO;title=AccessionCO" isrequired="false"/>
+                </row>-->
+            </rows>           
+        </viewdef> 
+		
+		<viewdef 
+			type="form" 
+			name="TreatmentEventSub" 
+			class="edu.ku.brc.specify.datamodel.TreatmentEvent" 
+			gettable="edu.ku.brc.af.ui.forms.DataGetterForObj" 
+			settable="edu.ku.brc.af.ui.forms.DataSetterForObj">
+			<desc><![CDATA[Form For Treatment Event]]></desc>
+            
+			<columnDef>100px,2px,143px,5px,115px,2px,143px,5px,110px,2px,115px,2px,50px,2px,p:g</columnDef>
+			<columnDef os="lnx">115px,2px,155px,5px,135px,2px,155px,5px,136px,2px,205px,0px,p:g</columnDef>
+			<columnDef os="mac">130px,2px,170px,5px,155px,2px,170px,5px,150px,2px,239px,0px,p:g</columnDef>
+			<columnDef os="exp">p,2px,p:g(2),5px:g,p,2px,p:g(2),5px:g,p,2px,p:g,0px</columnDef>
+			<rowDef auto="true" sep="2px" cell="p"/>
+            <rows>
+                <row>
+                    <cell type="label" labelfor="1"/>
+                    <cell type="field" id="1" name="collectionObject" uitype="querycbx" initialize="name=CollectionObject;editbtn=false;newbtn=false"/>				
+					<cell type="label" labelfor="7"/>	
+                    <cell type="field" id="7" name="dateTreatmentStarted" uitype="formattedtext" uifieldformatter="Date"/> 
+                    <cell type="label" labelfor="6"/>
+                    <cell type="field" id="6" name="dateTreatmentEnded" uitype="formattedtext" uifieldformatter="Date"/>
+				</row>
+				<row>	
+					<cell type="label" labelfor="fn"/><!--renamed Field Jacked ID -->
+                    <cell type="field" id="fn" name="fieldNumber" uitype="text"/>
+					<cell type="label" labelfor="11"/><!--  renamed Consolidant assigned matching pick list -->
+                    <cell type="field" id="11" name="treatmentNumber" uitype="combobox"/>
+                </row>
+                <row>
+                    <cell type="label" labelfor="12"/> <!-- renamed Prep Tools assigned matching pick list -->
+                    <cell type="field" id="12" name="type" uitype="combobox"/>
+                    <cell type="label" labelfor="4"/> <!-- renamed Tool details -->
+                    <cell type="field" id="4" name="location" uitype="text" colspan="3"/>									
+                </row>
+                <row> 
+                    <cell type="label" labelfor="10"/>
+                    <cell type="field" id="10" name="remarks" uitype="textareabrief" rows="2" colspan="13"/>
+                </row>  
+                <row>
+                    <cell type="label" labelfor="99"/>
+                    <cell type="field" id="99" name="createdByAgent" uitype="label" readonly="true"  uifieldformatter="Agent"/>
+                    <cell type="label" labelfor="101"/>
+                    <cell type="field" id="101" name="modifiedByAgent" uitype="label" readonly="true"  uifieldformatter="Agent"/>
+                </row>
+                <row>
+                    <cell type="label" labelfor="111"/>
+                    <cell type="field" id="111" name="timestampModified" uitype="label" readonly="true"/>
+                    <cell type="label" labelfor="122"/>
+                    <cell type="field" id="122" name="timestampCreated" uitype="label" readonly="true"/>
+                </row>					
+			<!--	
+                    <cell type="label" labelfor="2"/>
+                    <cell type="field" id="2" name="accession" uitype="querycbx" initialize="name=AccessionCO;title=AccessionCO" isrequired="false"/>
+					<cell type="label" labelfor="5"/>
+                    <cell type="field" id="5" name="dateToIsolation" uitype="formattedtext" uifieldformatter="Date"/> 
+                    <cell type="label" labelfor="3"/>
+                    <cell type="field" id="3" name="dateCompleted" uitype="formattedtext" uifieldformatter="Date"/> 
+            -->  
+
+            </rows>           
+        </viewdef>
+				
+<!-- Lines 160 through 162 need to be copied and pasted into the VIEWDEF of the Collection Object form. Where you paste the line in relation to 
+other fields is where in the CO form it will appear -->
+
+                <row> <!--activated on (date) by (name) -->
+                    <cell type="subview" viewname="Preparation" id="12" name="preparations" colspan="15"/>
+                </row>
+				
+<!-- You will still need to change labels and such in the System--Schema Configuration--(Available Locales)--Edit a Schema. -->				
